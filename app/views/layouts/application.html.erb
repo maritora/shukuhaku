@@ -11,6 +11,52 @@
   </head>
 
   <body>
+   <header class="header">
+    <div class="header-inner">
+     <div class="header-left-nav">
+      <div class="top_icon">
+      <%= link_to image_tag("toplogo.png", class:"image-top"), "/" %>
+      </div>
+       <form action="https://presite-potepancamp-rails-02.herokuapp.com/rooms/search" accept-charset="UTF-8" method="get">
+        <div class="header-sharch d-lg-inline-block d-none">
+          <input type="text" name="area" id="area" value="" class="form-control" placeholder="エリア">
+          <i class="fas fa-map-marker-alt"></i>
+        </div>
+        <div class="header-sharch d-lg-inline-block d-none">
+          <input type="text" name="keyword" id="keyword" value="" class="form-control" placeholder="キーワード">
+          <i class="fas fa-search"></i>
+        </div>
+        <input type="submit" name="commit" value="" class="d-none" data-disable-with="">
+       </form>
+     </div>
+    
+     <div class="header-right-nav">
+       <% if user_signed_in? %>
+         <div class="header-name">
+            ようこそ！<%= current_user.name %>さん
+         </div>
+         <div class="nav-item">
+          <ul class="header-nav-menu" style="display: block;">
+           <li><%= link_to "ルーム登録", :new_room %></li>
+           <li><%= link_to "予約済みルーム一覧", :posts %></li>
+           <li><%= link_to "登録済みルーム一覧", :rooms %></li>
+           <li><%= link_to "設定", [:edit_user_registration] %></li>
+           <li><%= link_to "ログアウト", [:user_session] %></li>
+          </ul>
+         </div>
+      <!- アイコン ->
+         <div class="icon">
+          <img src=<%= current_user.icon %> class = "icon_image">
+         </div>
+      <% else %> 
+        <li><%= link_to "ログイン", :new_user_session %></li>
+        <li><%= link_to "新規登録", :new_user_registration %></li>
+      <% end %>
+     </div>
+   </header>
     <%= yield %>
+   <footer class="footer">
+    <p>宿泊予約アプリ</p>
+   </footer>
   </body>
 </html>

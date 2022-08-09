@@ -1,3 +1,15 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get 'posts/index' 
+  get 'users/show'
+  get 'rooms/index' 
+  resources :rooms
+  resources :posts
+  devise_for :users
+  root 'top#index'
+  get 'search' => 'rooms#search'
+  
+  get 'users/account', to: 'users#account'
+  get 'users/profile', to: 'users#profile'
+  post 'posts/confirm'
+  post 'posts/back' 
 end

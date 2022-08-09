@@ -1,0 +1,30 @@
+ <table>
+   <tr>
+     <th>予約内容確認</th>
+     <td><pre><%= @post.price %></pre></td>
+   </tr>
+   <tr>
+     <th>開始日</th>
+     <td><%= @post.start %></td>
+   </tr>
+   <tr>
+     <th>終了日</th>
+     <td><%= @post.end %></td>
+   </tr>
+   <tr>
+     <th>使用日数</th>
+     <td><%= @post.room_id %></td>
+   </tr>
+   <tr>
+     <th>人数</th>
+     <td><%= @post.room_id %></td>
+   </tr>
+   <tr>
+     <th>合計金額</th>
+     <td><%= @post.room_price %></td>
+   </tr>
+     <td>上記内容でよろしければ「予約を確定」を押してください。</td>
+     <li><%= f.submit "予約を確定" %></li>
+ </table>
+ 
+     <li><%= link_to "ルーム詳細に戻る", :rooms %></li>
