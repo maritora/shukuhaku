@@ -1,0 +1,21 @@
+<h4>アカウント</h4>
+
+<div class=".col-lg-10">
+  <table>
+      <tr>
+        <th>メールアドレス</th>
+        <td><%= current_user.email %></td>
+      </tr>
+      <tr>
+        <th>パスワード</th>
+        <td>********</td>
+      </tr>
+ </table>
+</div>
+
+<div>
+  <%= link_to '編集', '/users/edit/' %> 
+</div>
+<div>
+  <%= link_to "プロフィール編集", '/users/profile' %>
+</div>

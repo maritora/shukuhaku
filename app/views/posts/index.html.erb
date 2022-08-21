@@ -13,7 +13,21 @@
    </tr>
   </thead>
   <tbody>
-   
+    <% @rooms.each do |room| %>
+      <% @posts.each do |post| %>
+        <% if room.id == post.room_id %>
+          <tr>
+            <td><%= image_tag room.image.variant(resize_to_fill: [200, 150]) %></td>
+            <td class="posts-name"><%= link_to room.name,room %></td>
+            <td class="posts-content"><%= room.info %></td>
+            <td class="price-icon">￥<%= post.totalprice %></td>
+            <td><%= post.start.to_s(:datetime_jp) %></td>
+            <td><%= post.end.to_s(:datetime_jp) %></td>
+            <td><%= post.created_at.to_s(:datetime_jp) %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    <% end %>
   </tbody>
  </table>
 </div>

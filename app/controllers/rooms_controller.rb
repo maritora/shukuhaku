@@ -1,4 +1,5 @@
 class RoomsController < ApplicationController
+
   def index
     @rooms = Room.all
     @posts = Post.all
@@ -9,7 +10,7 @@ class RoomsController < ApplicationController
   end
 
   def create
-    @room = Room.new(params.require(:room).permit(:name, :info, :price, :address, :image))
+    @room = Room.new(params.require(:room).permit(:id, :name, :info, :price, :address, :image, :user_id))
     if @room.save
       flash[:notice] = "ルームを登録しました"
       redirect_to :rooms
@@ -17,8 +18,9 @@ class RoomsController < ApplicationController
       render "new"
     end
   end
-
+  
   def show
+    @users = User.all
     @room = Room.find(params[:id])
     @post = Post.new
     @posts = @room.posts
@@ -34,8 +36,7 @@ class RoomsController < ApplicationController
   end
 
   def search
-    @rooms = Room.search(params[:keyword])
-    @keyword = params[:keyword]
-    render "index"
-  end
+    @rooms = Room.all.includes(:recruiter)
+  end  
+
 end

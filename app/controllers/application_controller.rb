@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
     before_action :configure_permitted_parameters, if: :devise_controller?
+    before_action :set_search
   
     protected
   
@@ -19,5 +20,9 @@ class ApplicationController < ActionController::Base
     def index
         @user = User.find(params[:id])
     end
-
+    
+    def set_search
+        @search = Room.ransack(params[:q])
+        @search_rooms = @search.result(distinct: true).order(created_at: "DESC").includes(:user)
+    end
 end
