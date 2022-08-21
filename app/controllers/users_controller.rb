@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   def account
   end
 
-  def profile
+  def show
     @user = current_user
   end
 end
