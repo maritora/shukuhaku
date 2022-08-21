@@ -1,0 +1,36 @@
+<h3>ルーム詳細・予約</h3>
+ <div class="container room-show">
+  <div class="row">
+    <div class="col-md-8">
+     <%= image_tag @room.image.variant(resize_to_fill: [200, 150]) %>
+      <div class="room-show-detile">
+        <div class="room-show-profile">
+          <p class="room-show-profile-name"><%= @room.name %></p>
+          <p class="room-show-profile-address"><%= @room.address %></p>
+        </div>
+      </div>
+      <p class="room-show-detile-content"><%= @room.info %></p>
+    </div>
+    <div class="col-md-4">
+      <div class="room-show-nav">
+        <%= form_with model: @post, method: :post, url: '/posts/confirm' do |f| %>
+         <h5 class="price-icon">¥<%= @room.price %>/日</h5>
+         <div class="room-show-date-select">
+            <%= f.label :date, "開始日" %>
+            <%= f.datetime_field :start,class:"posts-start" %>
+            <%= f.label :date, "終了日" %>
+            <%= f.datetime_field :end,class:"posts-end" %>
+            <label for="person_num">
+            <%= f.label :ninzu, "人数" %></label>
+            <%= f.number_field :ninzu %>
+            <%= f.hidden_field :room_name, value: @room.name %>
+            <%= f.hidden_field :room_price, value: @room.price %>
+            <%= f.hidden_field :user_id, value: current_user.id %>
+            <%= f.hidden_field :room_id, value: @room.id %>
+            <%= f.submit "予約する"%>
+        <% end %>    
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

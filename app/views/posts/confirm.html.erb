@@ -1,0 +1,45 @@
+<h3>予約内容確認<h3>
+<table>
+<tr>
+  <th>チェックイン日</th>
+  <td><%= @post.start.to_s(:datetime_jp) %></td>
+</tr>
+<tr>
+  <th>チェックアウト日</th>
+  <td><%= @post.end.to_s(:datetime_jp) %></td>
+</tr>
+<tr>
+<th>滞在期間</th>
+  <td><%= @sumdays %>日</td>
+</tr>
+<tr>
+<th>人数</th>
+  <td><%= @post.ninzu %>名</td>
+</tr>
+<tr>
+<th>合計金額</th>
+  <td>￥<%= @totalprice %></td>
+</tr>
+
+
+  <%= form_for @post do |f| %>
+    <%= f.hidden_field :id %> 
+    <%= f.hidden_field :start %>
+    <%= f.hidden_field :end %>
+    <%= f.hidden_field :ninzu %>
+    <%= f.hidden_field :sumdays, value: @sumdays %>
+    <%= f.hidden_field :totalprice, value: @totalprice %>
+    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :room_id %>
+    <%= f.hidden_field :room_name %>
+  <tr>
+    <td>上記内容でよろしければ「予約を確定」を押してください。</td>
+  </tr>
+  <tr>
+    <td><%= f.submit '予約を確定する' %></td>
+  <% end %>
+  </tr>
+  <tr>
+    <td><%= link_to '前の画面に戻る', :back %></td>
+  </tr>
+  </table>

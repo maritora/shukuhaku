@@ -1,0 +1,22 @@
+<% if flash[:notice] %>
+<p class="notice"><%= flash[:notice] %></p>
+<% end %>
+
+<table>
+<tr>
+  <th>予約した部屋</th>
+  <td><%= @post.room_name %></td>
+</tr>
+<tr>
+  <th>チェックイン日</th>
+  <td><%= @post.start.to_s(:datetime_jp) %></td>
+</tr>
+<tr>
+  <th>チェックアウト日</th>
+  <td><%= @post.end.to_s(:datetime_jp) %></td>
+</tr>
+<tr>
+<th>価格</th>
+  <td>￥<%= @post.totalprice %></td>
+</tr>
+</table>
